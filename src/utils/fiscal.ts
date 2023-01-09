@@ -1,4 +1,4 @@
-import { bsToAd } from "./converter"
+import { adToBs, bsToAd } from "./converter"
 
 function getFiscalDateMonthWiseEN(year: number): {
   start: string
@@ -38,4 +38,29 @@ function getFiscalDateMonthWiseEN(year: number): {
   }
 }
 
-export { getFiscalDateMonthWiseEN }
+function getFiscalBoundariesByMonth() {
+  const today = new Date()
+
+  const date = adToBs(today.toISOString().split("T")[0], false)
+
+  if (typeof date == "object") {
+    let { year, month, day } = date
+
+    const fiscalEndDate = bsToAd(`${year}-04-01`)
+    const fiscalEndDateAd = new Date(fiscalEndDate)
+    fiscalEndDateAd.setDate(fiscalEndDateAd.getDate() - 1)
+
+    // Compare today and fiscalEndDate
+    if (today > fiscalEndDateAd) {
+      year = year + 1
+    } else {
+      year = year
+    }
+
+    return getFiscalDateMonthWiseEN(year)
+  } else {
+    return null
+  }
+}
+
+export { getFiscalDateMonthWiseEN, getFiscalBoundariesByMonth }

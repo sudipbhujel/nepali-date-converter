@@ -4,7 +4,7 @@ import { AdDateSanitizer, BsDateSanitizer } from "./sanitizer"
 
 const startEnglishDate = "1921-04-13"
 
-function adToBs(adDate: string) {
+function adToBs(adDate: string, format = true) {
   adDate = AdDateSanitizer(adDate)
   const startDate = new Date(startEnglishDate)
   const today = new Date(adDate)
@@ -14,7 +14,7 @@ function adToBs(adDate: string) {
   if (daysDifference < 0) {
     throw new Error("AD Date out of range")
   }
-  return evaluateNepaliDate(daysDifference)
+  return evaluateNepaliDate(daysDifference, format)
 }
 
 function bsToAd(selectedDate: string) {

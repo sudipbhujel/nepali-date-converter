@@ -11,7 +11,16 @@ function evaluateEnglishDate(date: string, days: number): string {
   }`
 }
 
-function evaluateNepaliDate(dateElapsed: number, format = true) {
+type EvaluateNepaliDateReturn = {
+  year: number
+  month: number
+  day: number
+}
+
+function evaluateNepaliDate(
+  dateElapsed: number,
+  format = true
+): string | { year: number; month: number; day: number } {
   let currentYear = 0
   let currentMonth = 0
   let currentDay = 0
@@ -36,7 +45,7 @@ function evaluateNepaliDate(dateElapsed: number, format = true) {
     return `${currentYear}-${("0" + currentMonth).slice(-2)}-${(
       "0" + currentDay
     ).slice(-2)}`
-  else return { currentYear, currentMonth, currentDay }
+  else return { year: currentYear, month: currentMonth, day: currentDay }
 }
 
 export { evaluateEnglishDate, evaluateNepaliDate }
