@@ -1,6 +1,10 @@
 import { bsToAd } from "./converter"
 
-function getFiscalDateMonthWiseEN(year: number) {
+function getFiscalDateMonthWiseEN(year: number): {
+  start: string
+  boundaries: string[]
+  end: string
+} {
   const boundaries: string[] = []
 
   let month = 5
