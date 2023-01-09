@@ -4,6 +4,14 @@ function getFiscalDateMonthWiseEN(year: number) {
   const boundaries: string[] = []
 
   let month = 5
+  const startFinancialYear = `${year}-04-01`
+  const startFinancialYearAD = bsToAd(startFinancialYear)
+  const startFinancialYearDate = new Date(startFinancialYearAD)
+
+  const endFinancialYear = `${year + 1}-04-01`
+  const endFinancialYearAD = bsToAd(endFinancialYear)
+  const endFinancialYearDate = new Date(endFinancialYearAD)
+  endFinancialYearDate.setDate(endFinancialYearDate.getDate() - 1)
 
   for (let i = 0; i < 12; i++) {
     if (month > 12) {
@@ -19,7 +27,11 @@ function getFiscalDateMonthWiseEN(year: number) {
     month = month + 1
   }
 
-  return boundaries
+  return {
+    start: startFinancialYearDate.toISOString().split("T")[0],
+    boundaries,
+    end: endFinancialYearDate.toISOString().split("T")[0],
+  }
 }
 
 export { getFiscalDateMonthWiseEN }
