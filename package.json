@@ -1,6 +1,6 @@
 {
   "name": "@nepalidate/converter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This package provides a simple and lightweight utility to convert dates between the Gregorian calendar and the Nepali calendar. It can handle both the traditional Bikram Sambat and the modified version used in Nepal since the 20th century. The package offers a variety of functions for formatting and manipulating Nepali dates, as well as for performing date arithmetic and comparison. It is designed to be easy to use and integrate into any JavaScript project.",
   "main": "lib/index.js",
   "types": "lib",
