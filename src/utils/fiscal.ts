@@ -44,7 +44,7 @@ function getFiscalBoundariesByMonth() {
   const date = adToBs(today.toISOString().split("T")[0], false)
 
   if (typeof date == "object") {
-    let { year, month, day } = date
+    let { year } = date
 
     const fiscalEndDate = bsToAd(`${year}-04-01`)
     const fiscalEndDateAd = new Date(fiscalEndDate)
@@ -52,9 +52,9 @@ function getFiscalBoundariesByMonth() {
 
     // Compare today and fiscalEndDate
     if (today > fiscalEndDateAd) {
-      year = year + 1
-    } else {
       year = year
+    } else {
+      year = year - 1
     }
 
     return getFiscalDateMonthWiseEN(year)
